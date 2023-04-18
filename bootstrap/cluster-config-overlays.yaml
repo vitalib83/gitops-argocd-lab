@@ -15,9 +15,7 @@ spec:
       name: "config-{{cluster.environment}}-{{cluster.name}}-overlay"
       labels:
         environment: "{{cluster.environment}}"
-        cluster: "{{cluster.fqdn}}"
-        region: "{{cluster.region}}"
-        cloud: "{{cluster.cloud}}"
+        cluster: "{{cluster.name}}"
     spec:
       project: default
       source:

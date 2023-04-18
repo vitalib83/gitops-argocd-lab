@@ -20,6 +20,7 @@ spec:
       name: "config-{{cluster.environment}}-{{cluster.name}}-{{template}}"
       labels:
         environment: "{{cluster.environment}}" 
+        cluster: "{{cluster.name}}"
     spec:
       project: default
       source:
