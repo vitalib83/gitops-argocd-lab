@@ -6,7 +6,7 @@ metadata:
 spec:
   generators:
   - git:
-      repoURL: https://github.com/albertogd/gitops-argocd-lab.git
+      repoURL: https://github.com/vitalib83/gitops-argocd-lab.git
       revision: main
       files:
         - path: "clusters/**/conf.yaml"
@@ -19,7 +19,7 @@ spec:
     spec:
       project: default
       source:
-        repoURL: https://github.com/albertogd/gitops-argocd-lab.git
+        repoURL: https://github.com/vitalib83/gitops-argocd-lab.git
         targetRevision: main
         path: clusters/{{cluster.environment}}/{{cluster.name}}/overlay
       destination:
