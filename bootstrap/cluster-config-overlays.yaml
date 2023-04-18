@@ -24,4 +24,8 @@ spec:
         path: clusters/{{cluster.environment}}/{{cluster.name}}/overlay
       destination:
         server: "{{cluster.address}}"
-      syncPolicy: {}
+      syncPolicy:
+        automated:
+          prune: false
+          selfHeal: false
+
