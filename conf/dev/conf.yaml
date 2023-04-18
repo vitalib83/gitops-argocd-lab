@@ -1,0 +1,3 @@
+# Openshift-ingress
+ingress:
+  replicas: 3

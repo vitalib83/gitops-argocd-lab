@@ -1,0 +1,35 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: cluster-config
+  namespace: openshift-gitops
+spec:
+  generators:
+    - matrix:
+        generators:
+          - git:
+              repoURL: https://github.com/albertogd/gitops-argocd-lab.git
+              revision: main
+              files:
+                - path: "clusters/**/conf.yaml"
+          - list:
+              elements:
+                - template: openshift-ingress
+  template:
+    metadata:
+      name: "config-{{cluster.environment}}-{{cluster.name}}-{{template}}"
+      labels:
+        environment: "{{cluster.environment}}" 
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/albertogd/gitops-argocd-lab.git
+        targetRevision: main
+        path: base/config/{{template}}
+        helm:
+          valueFiles:
+            - /conf/{{cluster.environment}}/conf.yaml
+            - /clusters/{{cluster.environment}}/{{cluster.name}}/conf.yaml
+      destination:
+        server: "{{cluster.address}}"
+      syncPolicy: {}
