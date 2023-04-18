@@ -33,4 +33,8 @@ spec:
             - /clusters/{{cluster.environment}}/{{cluster.name}}/conf.yaml
       destination:
         server: "{{cluster.address}}"
-      syncPolicy: {}
+      syncPolicy:
+        automated:
+          prune: false
+          selfHeal: false
+
